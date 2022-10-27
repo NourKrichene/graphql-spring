@@ -45,6 +45,12 @@ public class CountryController {
     }
 
     @MutationMapping
+    public Country createCountry(@Argument Country country) {
+        countryService.saveCountry(country);
+        return country;
+    }
+
+    @MutationMapping
     public Country addCountryWithCapital(@Argument String name, @Argument String language, City capital) {
         Country country = new Country();
         country.setName(name);

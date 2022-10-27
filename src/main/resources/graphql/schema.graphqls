@@ -1,38 +1,45 @@
 type City {
-  id: ID!
-  name: String
-  population: Int
+    id: ID!
+    name: String
+    population: Int
 }
 
 type Country {
-  id: ID!
-  name: String
-  language: String
-  capital: City
+    id: ID!
+    name: String
+    language: String
+    capital: City
 }
 
 input CityInput {
-  id: ID!
-  name: String
-  population: Int
+    id: ID!
+    name: String
+    population: Int
 }
 
 type Query {
-  city(id: ID): City
-  allCities: [City]
-  citiesByName(name: String): [City]
-  
-  country(id: ID): Country
-  allCountries: [Country]
-  countriesByName(name: String): [Country]
+    city(id: ID): City
+    allCities: [City]
+    citiesByName(name: String): [City]
+
+    country(id: ID): Country
+    allCountries: [Country]
+    countriesByName(name: String): [Country]
 }
 
 type Mutation {
-  addCity(name: String, population: Int): City
-  deleteCity(id: ID): String
-  
-  addCountry(name: String, language: String): Country
-  addCountryWithCapital(name: String, language: String, capital: CityInput): Country
-  deleteCountry(id: ID): String
-  setCapital(countryId: ID, cityId: ID): Country
+    addCity(name: String, population: Int): City
+    deleteCity(id: ID): String
+
+    addCountry(name: String, language: String): Country
+    createCountry(country: CountryInput): Country
+    addCountryWithCapital(name: String, language: String, capital: CityInput): Country
+    deleteCountry(id: ID): String
+
+    setCapital(countryId: ID, cityId: ID): Country
+}
+
+input CountryInput {
+    name: String
+    language: String
 }
